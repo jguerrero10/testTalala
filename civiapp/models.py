@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -19,49 +21,43 @@ class Officer(models.Model):
         return f'Officer: {self.user.first_name} {self.user.last_name}'
 
 
+class Clerk(models.Model):
+    user = models.ForeignKey(User, on_delete=models.RESTRICT)
+
+    def __str__(self):
+        return f'Clerk: {self.user.first_name} {self.user.last_name}'
+
+
 class Gender(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=60)
 
     def __str__(self):
         return self.name
 
 
-class Passenger(models.Model):
-    oln_state = models.CharField(max_length=20)
-    oln_number = models.CharField(max_length=30)
-    class_oln = models.CharField(max_length=20)
-    cdl = models.BooleanField(default=False)
-    fullname = models.CharField(max_length=180)
-    dob = models.DateField()
-    gender = models.ForeignKey(Gender, on_delete=models.RESTRICT, null=True, blank=True)
-    hair = models.CharField(max_length=25, blank=True)
-    eyes = models.CharField(max_length=25, blank=True)
-    height = models.CharField(max_length=10, blank=True)
-    address = models.CharField(max_length=180, blank=True)
-    city = models.CharField(max_length=30)
-    state = models.CharField(max_length=25)
-    phone = models.CharField(max_length=25)
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.fullname
-
-
-class VehicleType(models.Model):
+class Citation(models.Model):
+    oln_state_passenger = models.CharField(max_length=20)
+    oln_number_passenger = models.CharField(max_length=30)
+    class_oln_passenger = models.CharField(max_length=20)
+    cdl_passenger = models.BooleanField(default=False)
+    fullname_passenger = models.CharField(max_length=180)
+    dob_passenger = models.DateField()
+    gender_passenger = models.ForeignKey(Gender, on_delete=models.RESTRICT, null=True, blank=True)
+    hair_passenger = models.CharField(max_length=25, blank=True)
+    eyes_passenger = models.CharField(max_length=25, blank=True)
+    height_passenger = models.CharField(max_length=10, blank=True)
+    address_passenger = models.CharField(max_length=180, blank=True)
+    city_passenger = models.CharField(max_length=30)
+    state_passenger = models.CharField(max_length=25)
+    phone_passenger = models.CharField(max_length=25)
+    email_passenger = models.EmailField()
     vin = models.CharField(max_length=12)
     color = models.CharField(max_length=30)
     make = models.CharField(max_length=50)
     year = models.PositiveSmallIntegerField()
     model_vehicle = models.CharField(max_length=180)
-
-    def __str__(self):
-        return f'Vin: {self.vin}'
-
-
-class Citation(models.Model):
-    passenger = models.ForeignKey(Passenger, on_delete=models.RESTRICT)
-    vehicle_type = models.ForeignKey(VehicleType, on_delete=models.RESTRICT)
-    violation_datetime = models.DateTimeField()
+    violation_date = models.DateField(default=date.today)
+    violation_time = models.TimeField(default='00:00')
     route = models.CharField(max_length=20)
     county = models.CharField(max_length=80)
     city = models.CharField(max_length=80)
@@ -77,7 +73,7 @@ class Citation(models.Model):
     officer_notes = models.TextField()
 
     def __str__(self):
-        return f'{self.id} - Citation | {self.passenger}'
+        return f'{self.id} - Citation | {self.fullname_passenger}'
 
 
 class Violation(models.Model):
