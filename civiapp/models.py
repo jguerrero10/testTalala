@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db import models
 
 
@@ -16,6 +16,8 @@ class Agency(models.Model):
 class Officer(models.Model):
     user = models.ForeignKey(User, on_delete=models.RESTRICT)
     badge = models.PositiveSmallIntegerField()
+    agency = models.ForeignKey(Agency, on_delete=models.RESTRICT)
+    rol = models.ForeignKey(Group, on_delete=models.RESTRICT, default=1)
 
     def __str__(self):
         return f'Officer: {self.user.first_name} {self.user.last_name}'
@@ -23,6 +25,8 @@ class Officer(models.Model):
 
 class Clerk(models.Model):
     user = models.ForeignKey(User, on_delete=models.RESTRICT)
+    agency = models.ForeignKey(Agency, on_delete=models.RESTRICT, related_name='clrek_agency')
+    rol = models.ForeignKey(Group, on_delete=models.RESTRICT, default=2)
 
     def __str__(self):
         return f'Clerk: {self.user.first_name} {self.user.last_name}'

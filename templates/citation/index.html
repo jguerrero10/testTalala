@@ -1,0 +1,37 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    Citation
+{% endblock %}
+
+{% block page_title %}
+    Citations
+{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Passanger</th>
+                <th>Violation Date</th>
+                <th>Officer</th>
+                <th>Agency</th>
+                <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for citation in citations %}
+            <tr>
+                <td>{{ citation.id }}</td>
+                <td>{{ citation.fullname_passenger}}</td>
+                <td>{{ citation.violation_date }}</td>
+                <td>{{ citation.officer }}</td>
+                <td>{{ citation.officer.agency }}</td>
+                <td><a href="{% url 'detail-citation' citation.id %}" class="btn btn-success">Ver</a></td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
