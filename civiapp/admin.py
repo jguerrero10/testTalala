@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from civiapp.models import Clerk, Agency, Citation
+
+
+admin.site.register(Clerk)
+admin.site.register(Agency)
+admin.site.register(Citation)
+
+

@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    Officer
+{% endblock %}
+
+{% block page_title %}
+    Update Officer
+{% endblock %}
+
+{% block content %}
+    <div class="col">
+    <section class="card">
+        <div class="card-body">
+            {% include 'officer/include/form.html' %}
+        </div>
+    </section>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $("#send").click(function (event){
+                $.ajax({
+                    url: "{% url 'update-officer' officer.id %}",
+                    type: "post",
+                    data: $("#form-officer").serialize(),
+                    success: function (rsp){
+                        Swal.fire({
+                            icon: rsp.error,
+                            title: rsp.title,
+                            text: rsp.message
+                            })
+                            .then(() => {
+                                window.location.href = '/';
+                            }
+
+                            );
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

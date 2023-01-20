@@ -1,0 +1,25 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    Officer
+{% endblock %}
+
+{% block page_title %}
+    Officer Detail
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">{{ officer }}</h5>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>First Name:</strong> {{ officer.user.first_name }}</li>
+                <li class="list-group-item"><strong>Last Name:</strong> {{ officer.user.last_login }}</li>
+                <li class="list-group-item"><strong>Username:</strong> {{ officer.user.username }}</li>
+                <li class="list-group-item"><strong>Badge:</strong> {{ officer.badge }}</li>
+                <li class="list-group-item"><strong>Badge:</strong> {{ officer.agency }}</li>
+            </ul>
+            <a href="{% url 'update-officer' officer.id %}" class="btn btn-warning">Update</a>
+        </div>
+    </div>
+{% endblock %}

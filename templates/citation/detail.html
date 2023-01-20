@@ -1,0 +1,53 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    Citation
+{% endblock %}
+
+{% block page_title %}
+    Citation Detail
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">{{ citation }}</h5>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>VIOLATION DATE::</strong> {{ citation.violation_date }}</li>
+                <li class="list-group-item"><strong>VIOLATION TIME::</strong> {{ citation.violation_time }}</li>
+                <li class="list-group-item"><strong>ROUTE:</strong> {{ citation.route }}</li>
+                <li class="list-group-item"><strong>COUNTY:</strong> {{ citation.county }}</li>
+                <li class="list-group-item"><strong>CITY/TOWN:</strong> {{ citation.city }}</li>
+                <li class="list-group-item"><strong>OLN STATE:</strong> {{ citation.oln_state_passenger }}</li>
+                <li class="list-group-item"><strong>OLN #:</strong> {{ citation.oln_number_passenger }}</li>
+                <li class="list-group-item"><strong>CLASS:</strong> {{ citation.class_oln_passenger}}</li>
+                <li class="list-group-item"><strong>GENDER:</strong> {{ citation.gender_passenger }}</li>
+                <li class="list-group-item"><strong>HAIR:</strong> {{ citation.hair_passenger}}</li>
+                <li class="list-group-item"><strong>EYES:</strong> {{ citation.eyes_passenger }}</li>
+                <li class="list-group-item"><strong>C.D.L.:</strong> {{ citation.cdl_passenger }}</li>
+                <li class="list-group-item"><strong>DOB:</strong> {{ citation.dob_passenger }}</li>
+                <li class="list-group-item"><strong>HEIGHT:</strong> {{ citation.height_passenger }}</li>
+                <li class="list-group-item"><strong>ADDRESS:</strong> {{ citation.address_passenger }}</li>
+                <li class="list-group-item"><strong>CITY:</strong> {{ citation.city_passenger }}</li>
+                <li class="list-group-item"><strong>STATE:</strong> {{ citation.state_passenger }}</li>
+                <li class="list-group-item"><strong>ADDRESS:</strong> {{ citation.address_passenger }}</li>
+                <li class="list-group-item"><strong>PHONE:</strong> {{ citation.phone_passenger }}</li>
+                <li class="list-group-item"><strong>EMAIL:</strong> {{ citation.email_passenger }}</li>
+                <li class="list-group-item"><strong>VIN:</strong> {{ citation.vin }}</li>
+                <li class="list-group-item"><strong>COLOR:</strong> {{ citation.color }}</li>
+                <li class="list-group-item"><strong>YEAR:</strong> {{ citation.year }}</li>
+                <li class="list-group-item"><strong>MAKE:</strong> {{ citation.make }}</li>
+                <li class="list-group-item"><strong>MODEL:</strong> {{ citation.model_vehicle }}</li>
+                <li class="list-group-item"><strong>CRASH:</strong> {{ citation.factor_crash }}</li>
+                <li class="list-group-item"><strong>PASSENGER(S):</strong> {{ citation.factor_passenger }}</li>
+                <li class="list-group-item"><strong>SPANISH SPEAKER:</strong> {{ citation.factor_spanish_speaker }}</li>
+                <li class="list-group-item"><strong>IN-CAR VIDEO:</strong> {{ citation.factor_in_car_video }}</li>
+                <li class="list-group-item"><strong>BODY CAMERA:</strong> {{ citation.factor_body_camera }}</li>
+                <li class="list-group-item"><strong>SCHOOL ZONE:</strong> {{ citation.factor_school_zone }}</li>
+                <li class="list-group-item"><strong>CONSTRUCTION ZONE:</strong> {{ citation.factor_construction_zone }}</li>
+                <li class="list-group-item"><strong>WORKERS PRESENT:</strong> {{ citation.factor_workers_present }}</li>
+                <li class="list-group-item"><strong>ISSUED BY:</strong> {{ citation.officer }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

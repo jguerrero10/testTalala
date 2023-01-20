@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    Officer
+{% endblock %}
+
+{% block page_title %}
+    Officers
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'create-officer' %}" class="btn btn-success">Create Officer</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Badge</th>
+                <th>Agency</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for officer in officers %}
+            <tr>
+                <td>{{ officer.id }}</td>
+                <td>{{ officer.user.first_name }}</td>
+                <td>{{ officer.user.last_name }}</td>
+                <td>{{ officer.badge }}</td>
+                <td>{{ officer.agency }}</td>
+                <td>
+                    <a href="{% url 'update-officer' officer.id %}" class="btn btn-warning">Update</a>
+                    <a href="{% url 'delete-officer' officer.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

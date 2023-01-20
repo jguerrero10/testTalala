@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#7952b3">
+</head>
+<body class="d-flex flex-column h-100">
+    <header>
+    <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">CiviApp</a>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        {% if is_officer %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'detail-officer' %}">Officer Profile</a>
+                            </li>
+                        {% elif user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'list-officer' %}">Officer</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <div class="d-flex">
+                        {% if user.is_authenticated %}
+                            <span class="name">Hola!, <strong class="font-weight-semibold text-white">{{ user.username }}</strong> <a href="{% url 'logout' %}" class="text-white btn btn-link">Logout</a></span>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="text-white btn btn-link">login</a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Begin page content -->
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5">{% block page_title %}{% endblock %}</h1>
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">Joel Guerrero's technical test.</span>
+        </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% block scripts %}
+
+    {% endblock %}
+</body>
+</html>
